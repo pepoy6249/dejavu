@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dejavu-code"
+version = "0.1.0"
+description = "Find code you forgot, by describing what it did."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Peter Hollens", email = "peterhollensmusic@gmail.com" }]
+keywords = ["semantic-search", "code-search", "embeddings", "mcp", "claude", "tree-sitter", "ollama"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "mcp[cli]>=1.0.0",
+    "tree-sitter>=0.21.0,<0.23.0",
+    "tree-sitter-languages>=1.10.0",
+    "httpx>=0.27.0",
+    "click>=8.0.0",
+    "rich>=13.0.0",
+    "pydantic>=2.0.0",
+    "pathspec>=0.12.0",
+    "numpy>=1.24.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/peterhollens/dejavu"
+Repository = "https://github.com/peterhollens/dejavu"
+Issues = "https://github.com/peterhollens/dejavu/issues"
+
+[project.optional-dependencies]
+vec = ["sqlite-vec>=0.1.0"]
+daemon = ["watchdog>=4.0.0"]
+fallback = ["sentence-transformers>=3.0.0"]
+
+[project.scripts]
+dejavu = "dejavu.cli:main"
+dejavu-mcp = "dejavu.server:main"
+
+[project.entry-points."mcp.servers"]
+dejavu = "dejavu.server:mcp"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dejavu"]
