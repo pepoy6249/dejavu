@@ -5,12 +5,11 @@ from __future__ import annotations
 import asyncio
 import json
 import sys
-import time
+from datetime import datetime
 
 import click
 from rich.console import Console
 from rich.panel import Panel
-from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn
 from rich.syntax import Syntax
 from rich.table import Table
 from rich.text import Text
@@ -147,7 +146,6 @@ def main(ctx, query, lang, when, path_filter, limit, json_output, explain):
             header.append(f" ({r.chunk_type})", style="dim")
             header.append(f" — {pct}", style="bold green" if r.similarity > 0.7 else "yellow")
 
-            from datetime import datetime
             mod_date = datetime.fromtimestamp(r.file_mtime).strftime("%Y-%m-%d")
 
             console.print(header)

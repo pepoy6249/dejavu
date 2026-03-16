@@ -333,7 +333,7 @@ async def search(
         base_similarity = max(0.0, 1.0 - (distance / 2.0))
         boost = compute_keyword_boost(query, r, keyword_boost)
         final_score = base_similarity + boost
-        scored.append((final_score, r))
+        scored.append((final_score, base_similarity, boost, r))
 
     # Sort by final score descending
     scored.sort(key=lambda x: x[0], reverse=True)
@@ -341,7 +341,7 @@ async def search(
     # Build results — deduplicate by file_path + start_line
     results = []
     seen_chunks: set[tuple[str, int]] = set()
-    for score, r in scored:
+    for score, vec_score, kw_boost, r in scored:
         # Deduplicate overlapping chunks (same file + overlapping line ranges)
         chunk_key = (r["file_path"], r["start_line"])
         if chunk_key in seen_chunks:
@@ -355,10 +355,6 @@ async def search(
         preview = "\n".join(source_lines[:30])
         if len(source_lines) > 30:
             preview += f"\n// ... ({len(source_lines) - 30} more lines)"
-
-        distance = r["distance"]
-        vec_score = max(0.0, 1.0 - (distance / 2.0))
-        kw_boost = compute_keyword_boost(query, r, keyword_boost)
 
         results.append(SearchResult(
             rank=rank,
